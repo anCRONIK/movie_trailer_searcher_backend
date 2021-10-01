@@ -1,5 +1,6 @@
 package site.ancronik.movie.trailer.searcher.info.presentation.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,13 +9,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
+import site.ancronik.movie.trailer.searcher.info.domain.entities.InfoResponse;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.head;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
-@WebMvcTest(IndexController.class)
-public class IndexControllerTest {
+@WebMvcTest(InfoController.class)
+public class InfoControllerTest {
 
     @Autowired
     private MockMvc mvc;
@@ -25,7 +30,15 @@ public class IndexControllerTest {
             .andReturn().getResponse();
 
         Assertions.assertEquals(HttpStatus.OK.value(), response.getStatus());
-        Assertions.assertEquals("Thank you for using Movie Trailer Searcher", response.getContentAsString());
+
+        InfoResponse infoResponse = new ObjectMapper().readValue(response.getContentAsString(), InfoResponse.class);
+
+        Pattern pattern = Pattern.compile("\\d\\.\\d\\.\\d", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(infoResponse.getApplicationVersion());
+
+        Assertions.assertTrue(matcher.matches());
+
+        Assertions.assertEquals("Thank you for using Movie Trailer Searcher. For any question contact 'ancronik@gmail.com'", infoResponse.getInfoMessage());
     }
 
     @Test
