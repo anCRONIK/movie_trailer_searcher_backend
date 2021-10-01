@@ -1,4 +1,4 @@
-package site.ancronik.movie.trailer.searcher.info.presentation.controller;
+package site.ancronik.movie.trailer.searcher.info.presentation.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
@@ -7,7 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import site.ancronik.movie.trailer.searcher.core.config.domain.entity.ErrorInfo;
+import site.ancronik.movie.trailer.searcher.core.domain.entity.ErrorInfo;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;

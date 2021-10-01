@@ -1,4 +1,4 @@
-package site.ancronik.movie.trailer.searcher.core.config.presentation.controller;
+package site.ancronik.movie.trailer.searcher.core.presentation.controllers;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

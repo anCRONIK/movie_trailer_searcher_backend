@@ -1,4 +1,4 @@
-package site.ancronik.movie.trailer.searcher.info.presentation.controller;
+package site.ancronik.movie.trailer.searcher.info.presentation.controllers;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/version")
 public class VersionController {
 
-    @Value("${app.version:UNKNOWN}")
+    @Value("${info.app.version:UNKNOWN}")
     private String version;
 
     @GetMapping
