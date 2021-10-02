@@ -1,3 +1,10 @@
+#application
+app:
+  imdb:
+    url: ${IMDB_BASE_URL:https://data-imdb1.p.rapidapi.com}
+    host: ${IMDB_HOST_HEADER:data-imdb1.p.rapidapi.com}
+    key: ${IMDB_KEY:47bc2ea633msh59d456f21da4c77p1ebc98jsn807b27dcc05e}
+
 #actuator
 info:
   app:
@@ -7,7 +14,7 @@ info:
     encoding: '@project.build.sourceEncoding@'
     java:
       version: '@java.version@'
-  
+
 management:
   endpoints:
     web:

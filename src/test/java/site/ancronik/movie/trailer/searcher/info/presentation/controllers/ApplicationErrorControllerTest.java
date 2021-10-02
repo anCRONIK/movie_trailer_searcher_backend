@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import site.ancronik.movie.trailer.searcher.core.domain.entity.ErrorInfo;
+import site.ancronik.movie.trailer.searcher.core.presentation.controllers.ApplicationErrorController;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 

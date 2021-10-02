@@ -2,6 +2,7 @@ package site.ancronik.movie.trailer.searcher.api.data.repositories;
 
 import lombok.NonNull;
 import org.springframework.stereotype.Component;
+import site.ancronik.movie.trailer.searcher.api.domain.entities.MovieTrailerSearchRequest;
 import site.ancronik.movie.trailer.searcher.api.domain.entities.MovieTrailerSearchResponse;
 import site.ancronik.movie.trailer.searcher.api.domain.repositories.MovieTrailerSearchRepository;
 
@@ -11,7 +12,7 @@ import java.util.List;
 public class VimeoSearchRepository implements MovieTrailerSearchRepository {
 
     @Override
-    public List<MovieTrailerSearchResponse> findAllMovieTrailersForName(@NonNull String name) {
+    public List<MovieTrailerSearchResponse> findAllMovieTrailersForName(@NonNull MovieTrailerSearchRequest request) {
         throw new UnsupportedOperationException("roki");
     }
 

@@ -13,7 +13,7 @@ public class ErrorInfo {
 
     private String path;
 
-    private LocalDateTime timestamp;
+    private LocalDateTime time; //FIXME JSON representation
 
     private String errorMsg;
 

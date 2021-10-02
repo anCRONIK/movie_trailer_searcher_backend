@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import site.ancronik.movie.trailer.searcher.core.util.MessageUtil;
 import site.ancronik.movie.trailer.searcher.info.domain.entities.InfoResponse;
 
-import java.util.Locale;
-
 @RestController
 @RequestMapping({ "", "/" })
 public class InfoController {

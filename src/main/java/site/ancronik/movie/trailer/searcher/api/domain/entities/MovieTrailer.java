@@ -5,17 +5,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.net.URL;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class MovieTrailerSearchResponse {
+@NoArgsConstructor
+public class MovieTrailer {
 
     @NonNull
     private String title;
 
-    private List<String> trailerUrls = new ArrayList<>();
+    @NonNull
+    private URL url;
 
 }
