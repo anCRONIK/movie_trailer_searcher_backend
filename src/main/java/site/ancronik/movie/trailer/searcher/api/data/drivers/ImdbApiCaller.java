@@ -53,7 +53,7 @@ public class ImdbApiCaller {
     public ImdbMovieResponse fetchMovieById(String id) {
         log.info("Fetching movie with id {}", id);
 
-        if(!StringUtils.hasText(id)){
+        if (!StringUtils.hasText(id)) {
             return null;
         }
 

@@ -4,7 +4,7 @@ import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import site.ancronik.movie.trailer.searcher.api.data.drivers.ImdbApiCaller;
 import site.ancronik.movie.trailer.searcher.api.data.models.ImdbMovieResponse;
 import site.ancronik.movie.trailer.searcher.api.domain.entities.MovieTrailerSearchRequest;
@@ -14,7 +14,7 @@ import site.ancronik.movie.trailer.searcher.core.Mapper;
 
 import java.util.List;
 
-@Component("imdbSearchRepository")
+@Repository("imdbSearchRepository")
 @Slf4j
 public class ImdbSearchRepository implements MovieTrailerSearchRepository {
 
@@ -29,7 +29,7 @@ public class ImdbSearchRepository implements MovieTrailerSearchRepository {
     }
 
     @Override
-    @Cacheable(value="movieTrailersSearchCache", key = "#request.searchTitle")
+    @Cacheable(value = "movieTrailersSearchCache", key = "#request.searchTitle")
     public List<MovieTrailerSearchResponse> findAllMovieTrailersForName(@NonNull MovieTrailerSearchRequest request) {
 
         return imdbMovieResponseMovieTrailerSearchResponseMapper.mapToList(apiCaller.searchMoviesByTitle(request.getSearchTitle()));

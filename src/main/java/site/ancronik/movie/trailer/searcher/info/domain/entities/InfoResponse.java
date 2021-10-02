@@ -12,4 +12,5 @@ public class InfoResponse {
     private String infoMessage;
 
     private String applicationVersion;
+
 }

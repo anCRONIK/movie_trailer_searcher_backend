@@ -31,7 +31,7 @@ public class MovieTrailerSearchServiceImpl implements MovieTrailerSearchService 
     public List<MovieTrailerSearchResponse> searchMovieTrailersForTitle(@NonNull MovieTrailerSearchRequest request) {
         Set<MovieTrailerSearchResponse> responseSet = new HashSet<>();
 
-        if(request.getLimit() == 0 || request.getLimit() < -1){
+        if (request.getLimit() == 0 || request.getLimit() < -1) {
             return new ArrayList<>();
         }
 

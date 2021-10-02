@@ -8,17 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
+import site.ancronik.movie.trailer.searcher.api.config.ApiServiceDefaultConfiguration;
 import site.ancronik.movie.trailer.searcher.api.domain.entities.MovieTrailerSearchRequest;
 import site.ancronik.movie.trailer.searcher.api.domain.entities.MovieTrailerSearchResponse;
 import site.ancronik.movie.trailer.searcher.api.domain.repositories.MovieTrailerSearchRepository;
-import site.ancronik.movie.trailer.searcher.config.ServiceDefaultConfiguration;
 
+import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-@ContextConfiguration(classes = { ServiceDefaultConfiguration.class })
+
+@ContextConfiguration(classes = { ApiServiceDefaultConfiguration.class })
 @SpringBootTest
 public class MovieTrailerSearchServiceImplTest {
 
@@ -35,7 +37,6 @@ public class MovieTrailerSearchServiceImplTest {
 
     MovieTrailerSearchServiceImpl movieTrailerSearchService;
 
-
     @BeforeEach
     void initBeforeEachTest() {
         movieTrailerSearchService = new MovieTrailerSearchServiceImpl(Arrays.asList(youtubeRepositoryMock, netflixRepositoryMock));
@@ -46,6 +47,12 @@ public class MovieTrailerSearchServiceImplTest {
     @Test
     public void checkInit() {
         Assertions.assertNotNull(movieTrailerSearchService);
+        Assertions.assertNotNull(autowiredService);
+        if (autowiredService instanceof Proxy) {
+            Assertions.assertTrue(((Proxy) autowiredService).toString().startsWith("site.ancronik.movie.trailer.searcher.api.domain.services.MovieTrailerSearchServiceImpl"));
+        } else {
+            Assertions.assertTrue(autowiredService instanceof MovieTrailerSearchServiceImpl);
+        }
     }
 
     @Test
@@ -194,5 +201,4 @@ public class MovieTrailerSearchServiceImplTest {
 
         return list;
     }
-
 }
