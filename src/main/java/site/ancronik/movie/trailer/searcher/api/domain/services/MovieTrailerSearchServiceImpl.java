@@ -8,6 +8,7 @@ import site.ancronik.movie.trailer.searcher.api.domain.entities.MovieTrailerSear
 import site.ancronik.movie.trailer.searcher.api.domain.entities.MovieTrailerSearchResponse;
 import site.ancronik.movie.trailer.searcher.api.domain.repositories.MovieTrailerSearchRepository;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -39,7 +40,7 @@ public class MovieTrailerSearchServiceImpl implements MovieTrailerSearchService 
             }
         }
 
-        throw new UnsupportedOperationException("2");
+        return new ArrayList<>(responseSet);
     }
 
 }

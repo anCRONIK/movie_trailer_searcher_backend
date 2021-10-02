@@ -14,8 +14,11 @@ public class ImdbMovieResponseToMovieTrailerSearchResponseMapper implements Mapp
     public MovieTrailerSearchResponse map(ImdbMovieResponse from) {
         MovieTrailerSearchResponse response = new MovieTrailerSearchResponse();
 
-        response.setTitle(from.getTitle());
-        response.setTrailerUrls(Collections.singletonList(from.getTrailer()));
+        response.setTitle(null == from.getMovieData().getTitle() ? "" : from.getMovieData().getTitle());
+
+        if (null != from.getMovieData().getTrailer()) {
+            response.setTrailers(Collections.singletonList(from.getMovieData().getTrailer()));
+        }
 
         return response;
     }

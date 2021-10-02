@@ -16,6 +16,6 @@ public class MovieTrailerSearchResponse {
     @NonNull
     private String title;
 
-    private List<String> trailerUrls = new ArrayList<>();
+    private List<String> trailers = new ArrayList<>();
 
 }

@@ -8,24 +8,7 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ImdbMovieResponse {
 
-    @JsonProperty("imdb_id")
-    private String imdbId;
-
-    private String title;
-
-    private String year;
-
-    private String popularity;
-
-    private String description;
-
-    private Double rating;
-
-    private String trailer;
-
-    @JsonProperty("image_url")
-    private String imgUrl;
-
-    private String banner;
+    @JsonProperty("Data")
+    private ImdbMovieData movieData;
 
 }

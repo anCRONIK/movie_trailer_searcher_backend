@@ -6,6 +6,7 @@ import site.ancronik.movie.trailer.searcher.api.domain.entities.MovieTrailerSear
 import site.ancronik.movie.trailer.searcher.api.domain.entities.MovieTrailerSearchResponse;
 import site.ancronik.movie.trailer.searcher.api.domain.repositories.MovieTrailerSearchRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component("vimeoSearchRepository")
@@ -13,7 +14,7 @@ public class VimeoSearchRepository implements MovieTrailerSearchRepository {
 
     @Override
     public List<MovieTrailerSearchResponse> findAllMovieTrailersForName(@NonNull MovieTrailerSearchRequest request) {
-        throw new UnsupportedOperationException("roki");
+        return new ArrayList<>();
     }
 
 }
