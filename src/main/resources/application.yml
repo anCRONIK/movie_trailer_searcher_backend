@@ -23,5 +23,8 @@ management:
 
 #spring settings
 spring:
+  cache:
+    jcache:
+      config: 'classpath:ehcache.xml'
   main:
     banner-mode: off

@@ -1,10 +1,8 @@
 package site.ancronik.movie.trailer.searcher.api.data.drivers;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -13,7 +11,6 @@ import site.ancronik.movie.trailer.searcher.api.data.models.ImdbMovieResponse;
 import site.ancronik.movie.trailer.searcher.api.data.models.ImdbMovieTitleSearchResponse;
 import site.ancronik.movie.trailer.searcher.core.util.WebClientUtil;
 
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -23,26 +20,15 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ImdbApiCaller {
 
-    @Value("${app.imdb.url}")
-    private String baseUrl;
-
-    @Value("${app.imdb.host}")
-    private String hostHeader;
-
-    @Value("${app.imdb.key}")
-    private String key;
 
     static private final String SEARCH_MOVIE_BY_TITLE_PATH = "/movie/imdb_id/byTitle/";
 
     static private final String GET_MOVIE_BY_ID_PATH = "/movie/id/";
 
-    private WebClient webClient;
+    private final WebClient webClient;
 
-    @PostConstruct
-    public void init() {
-        this.webClient =
-            WebClient.builder().baseUrl(baseUrl).defaultHeader("x-rapidapi-host", hostHeader).defaultHeader("x-rapidapi-key", key).defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
-                .build();
+    public ImdbApiCaller(@Qualifier("imdbWebClient")  WebClient webClient) {
+        this.webClient = webClient;
     }
 
     public List<ImdbMovieResponse> searchMoviesByTitle(String title) {

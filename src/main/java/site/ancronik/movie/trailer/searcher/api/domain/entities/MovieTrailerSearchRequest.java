@@ -11,5 +11,6 @@ public class MovieTrailerSearchRequest {
 
     private String searchTitle;
 
-    private String locale;
+    private int limit;
+
 }

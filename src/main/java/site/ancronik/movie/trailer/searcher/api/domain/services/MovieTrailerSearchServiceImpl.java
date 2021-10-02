@@ -24,19 +24,20 @@ public class MovieTrailerSearchServiceImpl implements MovieTrailerSearchService 
         this.searchRepositories = searchRepositories;
     }
 
-    //TODO use cache to optimize
-    //TODO comparator for MovieTrailerSearchResponse
-    //TODO limit and paging
+    //TODO Redis for caching
     @Override
     public List<MovieTrailerSearchResponse> searchMovieTrailersForTitle(@NonNull MovieTrailerSearchRequest request) {
         Set<MovieTrailerSearchResponse> responseSet = new HashSet<>();
 
         for (MovieTrailerSearchRepository repository : searchRepositories) {
             try {
-                responseSet.addAll(repository.findAllMovieTrailersForName(request));
+                if (responseSet.size() < request.getLimit() && request.getLimit() >= 0) {
+                    responseSet.addAll(repository.findAllMovieTrailersForName(request));
+                } else if (request.getLimit() == -1) {
+                    responseSet.addAll(repository.findAllMovieTrailersForName(request));
+                }
             } catch (Exception e) {
                 log.error("Exception while searching repository {}", repository.getClass(), e);
-                //TODO handle
             }
         }
 
