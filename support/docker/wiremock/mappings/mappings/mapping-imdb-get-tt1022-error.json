@@ -1,0 +1,13 @@
+{
+  "request": {
+    "url": "/imdb/movie/id/tt1022/",
+    "method": "GET"
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "Content-Type": "application/json; charset=UTF-8"
+    }
+  }
+
+}

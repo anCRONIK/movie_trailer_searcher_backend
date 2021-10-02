@@ -1,0 +1,18 @@
+#application
+logging:
+  level:
+    root: DEBUG
+
+app:
+  imdb:
+    url: ${IMDB_BASE_URL:http://localhost:7080/imdb}
+    host: ${IMDB_HOST_HEADER:rnd}
+    key: ${IMDB_KEY:rnd}
+
+#spring settings
+spring:
+  cache:
+    jcache:
+      config: 'classpath:ehcache.xml'
+  main:
+    banner-mode: off

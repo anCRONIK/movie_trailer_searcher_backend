@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  wiremock:
+    build: ./wiremock
+    image: movie-trailer-searcher-backend-wiremock
+    ports:
+      - "7080:7080"
+    volumes:
+      - ./wiremock/mappings:/wireMock/mappings

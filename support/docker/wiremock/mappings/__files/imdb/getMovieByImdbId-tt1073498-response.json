@@ -1,0 +1,56 @@
+{
+  "Data": {
+    "imdb_id": "tt1073498",
+    "title": "Meet the Spartans",
+    "year": 2008,
+    "popularity": 0,
+    "description": "The heroic Spartan king Leonidas, armed with nothing but leather underwear and a cape, leads a ragtag bunch of 13 Spartan misfit warriors to defend their homeland against thousands of invading Persians whom include the Ghost Rider, Rocky Balboa, the Autobots, and an ugly hunchbacked Paris Hilton and a shaved-head Brittany Spears.",
+    "content_rating": "PG-13",
+    "movie_length": 87,
+    "rating": 2.8,
+    "created_at": "2021-04-29T11:28:42.782197+03:00",
+    "trailer": "https://www.youtube.com/embed/RY-zJtYYolo",
+    "image_url": "https://m.media-amazon.com/images/M/MV5BMjAxMDE3NDQwMF5BMl5BanBnXkFtZTcwMjA0MzU1MQ@@._V1_UX182_CR0,0,182,268_AL_.jpg",
+    "release": "2008-02-28",
+    "plot": "A spoof of 300 (2006) and many other movies, TV series/shows/commercials, video games and celebrities. King Leonidas of Sparta and his army of 12 go to war against Xerxes of Persia to fight to the death for Sparta's freedom.",
+    "banner": "https://m.media-amazon.com/images/M/MV5BMjAxMDE3NDQwMF5BMl5BanBnXkFtZTcwMjA0MzU1MQ@@._V1_.jpg",
+    "type": "movie",
+    "more_like_this": {},
+    "gen": [
+      {
+        "id": 6,
+        "genre": "Fantasy"
+      },
+      {
+        "id": 9,
+        "genre": "Comedy"
+      },
+      {
+        "id": 10,
+        "genre": "Animation"
+      }
+    ],
+    "keywords": [
+      {
+        "id": 11041,
+        "keyword": "george w. bush character"
+      },
+      {
+        "id": 11042,
+        "keyword": "donald trump character"
+      },
+      {
+        "id": 11043,
+        "keyword": "rambo character"
+      },
+      {
+        "id": 11044,
+        "keyword": "britney spears character"
+      },
+      {
+        "id": 11045,
+        "keyword": "tom cruise character"
+      }
+    ]
+  }
+}

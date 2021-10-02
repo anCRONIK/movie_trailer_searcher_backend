@@ -1,0 +1,64 @@
+{
+  "Data": {
+    "imdb_id": "tt0054331",
+    "title": "Spartacus",
+    "year": 1960,
+    "popularity": 2329,
+    "description": "In 73 B.C., a Thracian slave leads a revolt at a gladiatorial school run by Lentulus Batiatus (Sir Peter Ustinov). The uprising soon spreads across the Italian Peninsula involving thousand of slaves. The plan is to acquire sufficient funds to acquire ships from Silesian pirates who could then transport them to other lands from Brandisium in the south. The Roman Senator Gracchus (Charles Laughton) schemes to have Marcus Publius Glabrus (John Dall), Commander of the garrison of Rome, lead an army against the slaves who are living on Vesuvius. When Glabrus is defeated his mentor, Senator and General Marcus Licinius Crassus (Sir Laurence Olivier) is greatly embarrassed and leads his own army against the slaves. Spartacus and the thousands of freed slaves successfully make their way to Brandisium only to find that the Silesians have abandoned them. They then turn north and must face the might of Rome.",
+    "content_rating": "PG-13",
+    "movie_length": 197,
+    "rating": 7.9,
+    "created_at": "2021-04-29T11:26:38.854968+03:00",
+    "trailer": "https://www.youtube.com/embed/HcIMY1Ah3aw",
+    "image_url": "https://m.media-amazon.com/images/M/MV5BMjc4MTUxN2UtMmU1NC00MjQyLTk3YTYtZTQ0YzEzZDc0Njc0XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL_.jpg",
+    "release": "1961-03-24",
+    "plot": "The slave Spartacus leads a violent revolt against the decadent Roman Republic.",
+    "banner": "https://m.media-amazon.com/images/M/MV5BMjc4MTUxN2UtMmU1NC00MjQyLTk3YTYtZTQ0YzEzZDc0Njc0XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
+    "type": "movie",
+    "more_like_this": {},
+    "gen": [
+      {
+        "id": 4,
+        "genre": "Adventure"
+      },
+      {
+        "id": 8,
+        "genre": "Drama"
+      },
+      {
+        "id": 27,
+        "genre": "Biography"
+      },
+      {
+        "id": 29,
+        "genre": "War"
+      },
+      {
+        "id": 31,
+        "genre": "History"
+      }
+    ],
+    "keywords": [
+      {
+        "id": 1610,
+        "keyword": "freedom"
+      },
+      {
+        "id": 4309,
+        "keyword": "gladiator"
+      },
+      {
+        "id": 5875,
+        "keyword": "slave rebellion"
+      },
+      {
+        "id": 5876,
+        "keyword": "roman republic"
+      },
+      {
+        "id": 5877,
+        "keyword": "slave revolt"
+      }
+    ]
+  }
+}

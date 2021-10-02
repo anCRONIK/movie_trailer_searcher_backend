@@ -20,14 +20,13 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ImdbApiCaller {
 
-
     static private final String SEARCH_MOVIE_BY_TITLE_PATH = "/movie/imdb_id/byTitle/";
 
     static private final String GET_MOVIE_BY_ID_PATH = "/movie/id/";
 
     private final WebClient webClient;
 
-    public ImdbApiCaller(@Qualifier("imdbWebClient")  WebClient webClient) {
+    public ImdbApiCaller(@Qualifier("imdbWebClient") WebClient webClient) {
         this.webClient = webClient;
     }
 
@@ -37,12 +36,22 @@ public class ImdbApiCaller {
             return new ArrayList<>();
         }
 
-        return findAllMovieIdsForTitle(title).stream().map(movieTitle -> fetchMovieById(movieTitle.getImdbId())).collect(Collectors.toList());
+        return findAllMovieIdsForTitle(title).stream().map(movieTitle -> {
+                try {
+                    return fetchMovieById(movieTitle.getImdbId());
+                } catch (Exception e) {
+                    log.error("Error while fetching trailer for {}", movieTitle.getImdbId());
+                    log.debug("", e);
+                    return null;
+                }
+            })
+            .filter(Objects::nonNull)
+            .collect(Collectors.toList());
     }
 
     public ImdbMovieResponse fetchMovieById(String id) {
         log.info("Fetching movie with id {}", id);
-        return webClient.get().uri(builder -> builder.path(GET_MOVIE_BY_ID_PATH + id +"/")
+        return webClient.get().uri(builder -> builder.path(GET_MOVIE_BY_ID_PATH + id + "/")
                 .build())
             .retrieve()
             .onStatus(status -> !status.is2xxSuccessful(), WebClientUtil.throwDataServiceException(HttpMethod.GET, GET_MOVIE_BY_ID_PATH, id))

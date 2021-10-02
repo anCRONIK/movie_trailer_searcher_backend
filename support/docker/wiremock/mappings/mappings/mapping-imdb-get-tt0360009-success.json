@@ -1,0 +1,14 @@
+{
+  "request": {
+    "url": "/imdb/movie/id/tt0360009/",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "/imdb/getMovieByImdbId-tt0054331-response.json",
+    "headers": {
+      "Content-Type": "application/json; charset=UTF-8"
+    }
+  }
+
+}
