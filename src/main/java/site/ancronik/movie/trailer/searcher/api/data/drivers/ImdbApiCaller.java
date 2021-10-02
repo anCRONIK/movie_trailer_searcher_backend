@@ -32,6 +32,7 @@ public class ImdbApiCaller {
 
     public List<ImdbMovieResponse> searchMoviesByTitle(String title) {
         log.info("Searching movies by title {}", title);
+
         if (!StringUtils.hasText(title)) {
             return new ArrayList<>();
         }
@@ -51,6 +52,11 @@ public class ImdbApiCaller {
 
     public ImdbMovieResponse fetchMovieById(String id) {
         log.info("Fetching movie with id {}", id);
+
+        if(!StringUtils.hasText(id)){
+            return null;
+        }
+
         return webClient.get().uri(builder -> builder.path(GET_MOVIE_BY_ID_PATH + id + "/")
                 .build())
             .retrieve()
@@ -59,8 +65,14 @@ public class ImdbApiCaller {
             .block();
     }
 
-    private List<ImdbMovieIdTitleData> findAllMovieIdsForTitle(String title) {
+    public List<ImdbMovieIdTitleData> findAllMovieIdsForTitle(String title) {
         log.debug("Searching for movie id");
+
+        if (!StringUtils.hasText(title)) {
+            log.warn("Given title is null!");
+            return new ArrayList<>();
+        }
+
         return Objects.requireNonNull(webClient.get().uri(builder -> builder.path(SEARCH_MOVIE_BY_TITLE_PATH + title + "/")
                 .build())
             .retrieve()
