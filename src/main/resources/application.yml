@@ -15,7 +15,12 @@ info:
     java:
       version: '@java.version@'
 
+
 management:
+  endpoint:
+    health:
+      show-details: when_authorized
+      roles: ADMIN
   endpoints:
     web:
       exposure:
