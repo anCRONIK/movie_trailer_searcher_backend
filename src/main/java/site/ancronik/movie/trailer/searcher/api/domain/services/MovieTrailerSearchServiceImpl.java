@@ -3,6 +3,7 @@ package site.ancronik.movie.trailer.searcher.api.domain.services;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import site.ancronik.movie.trailer.searcher.api.domain.entities.MovieTrailerSearchRequest;
 import site.ancronik.movie.trailer.searcher.api.domain.entities.MovieTrailerSearchResponse;
@@ -26,8 +27,13 @@ public class MovieTrailerSearchServiceImpl implements MovieTrailerSearchService 
 
     //TODO Redis for caching
     @Override
+    @Cacheable(value = "movieTrailersSearchServiceCache", key = "#request")
     public List<MovieTrailerSearchResponse> searchMovieTrailersForTitle(@NonNull MovieTrailerSearchRequest request) {
         Set<MovieTrailerSearchResponse> responseSet = new HashSet<>();
+
+        if(request.getLimit() == 0 || request.getLimit() < -1){
+            return new ArrayList<>();
+        }
 
         for (MovieTrailerSearchRepository repository : searchRepositories) {
             try {
@@ -41,7 +47,11 @@ public class MovieTrailerSearchServiceImpl implements MovieTrailerSearchService 
             }
         }
 
-        return new ArrayList<>(responseSet);
+        List<MovieTrailerSearchResponse> responseList = new ArrayList<>(responseSet);
+        if (responseList.size() > request.getLimit() && request.getLimit() > 0) {
+            return new ArrayList<>(responseList.subList(0, request.getLimit()));
+        }
+        return responseList;
     }
 
 }
