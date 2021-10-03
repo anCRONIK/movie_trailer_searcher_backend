@@ -15,4 +15,8 @@ public class MovieTrailerSearchRequest implements Serializable {
 
     private int limit;
 
+    public MovieTrailerSearchRequest copyWithLimit(int newLimit) {
+        return new MovieTrailerSearchRequest(this.searchTitle, newLimit);
+    }
+
 }

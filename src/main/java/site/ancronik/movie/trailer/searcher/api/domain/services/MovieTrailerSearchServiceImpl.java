@@ -46,7 +46,11 @@ public class MovieTrailerSearchServiceImpl implements MovieTrailerSearchService 
         for (MovieTrailerSearchRepository repository : searchRepositories) {
             try {
                 if (responseSet.size() < request.getLimit() || request.getLimit() == -1) {
-                    responseSet.addAll(callRepository(repository, request));
+                    if (request.getLimit() == -1) {
+                        responseSet.addAll(callRepository(repository, request));
+                    } else {
+                        responseSet.addAll(callRepository(repository, request.copyWithLimit(request.getLimit() - responseSet.size())));
+                    }
                 }
             } catch (Exception e) {
                 if (e instanceof TimeoutException || e instanceof InterruptedException) {
