@@ -1,6 +1,7 @@
-package site.ancronik.movie.trailer.searcher.api.config;
+package site.ancronik.movie.trailer.searcher.api.config.imdb;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -14,21 +15,18 @@ import java.time.Duration;
 @Configuration
 public class ImdbApiConfig {
 
-    @Value("${app.imdb.url}")
-    private String baseUrl;
+    @Bean
+    @ConfigurationProperties(prefix = "app.imdb")
+    public ImdbApiConfigProperties imdbApiConfigProperties() {
+        return new ImdbApiConfigProperties();
+    }
 
-    @Value("${app.imdb.host}")
-    private String hostHeader;
-
-    @Value("${app.imdb.key}")
-    private String key;
-
-    @Value("${app.imdb.webClient-response-timeout-in-seconds}")
+    @Value("${app.webClient-response-timeout-in-seconds}")
     private int responseTimeout;
 
     @Bean("imdbWebClient")
-    public WebClient imdbWebClient() {
-        return WebClient.builder().baseUrl(baseUrl).defaultHeader("x-rapidapi-host", hostHeader).defaultHeader("x-rapidapi-key", key)
+    public WebClient imdbWebClient(ImdbApiConfigProperties configProperties) {
+        return WebClient.builder().baseUrl(configProperties.getUrl()).defaultHeader("x-rapidapi-host", configProperties.getHost()).defaultHeader("x-rapidapi-key", configProperties.getKey())
             .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
             .clientConnector(new ReactorClientHttpConnector(HttpClient.create().responseTimeout(Duration.ofSeconds(responseTimeout))))
             .build();

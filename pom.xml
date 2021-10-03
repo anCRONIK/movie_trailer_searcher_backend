@@ -72,6 +72,18 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
+        <!-- Vimeo -->
+        <dependency>
+            <groupId>com.github.vimeo</groupId>
+            <artifactId>vimeo-networking-java</artifactId>
+            <version>2.0.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <version>1.6.0-M1</version>
+        </dependency>
+
 
         <!-- Others -->
         <dependency>
@@ -231,5 +243,12 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
 
 </project>

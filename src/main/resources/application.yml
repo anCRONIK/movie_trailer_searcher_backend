@@ -1,11 +1,16 @@
 #application
 app:
   search-repository-max-duration-in-seconds: 12
+  webClient-response-timeout-in-seconds: 5
   imdb:
     url: ${IMDB_BASE_URL:https://data-imdb1.p.rapidapi.com}
     host: ${IMDB_HOST_HEADER:data-imdb1.p.rapidapi.com}
-    key: ${IMDB_KEY:47bc2ea633msh59d456f21da4c77p1ebc98jsn807b27dcc05e}
-    webClient-response-timeout-in-seconds: 5
+    key: ${IMDB_KEY:key}
+  vimeo:
+    clientId: ${VIMEO_CLIENT_ID:a2d50a0ab03a60d7154ef8227cf7b9366ab1c7ba}
+    clientSecret: ${VIMEO_CLIENT_SECRET:secret}
+    accessToken: ${VIMEO_ACCESS_TOKEN:token}
+
 
 #actuator
 info:

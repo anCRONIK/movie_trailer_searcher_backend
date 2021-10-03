@@ -14,16 +14,8 @@ spec:
         app: backend
     spec:
       containers:
-        - env:
-            - name: api_username
-              valueFrom:
-                secretKeyRef:
-                  key: username
-                  name: backend-api
-            - name: api_password
-              valueFrom:
-                secretKeyRef:
-                  key: password
+        - envFrom:
+            - secretRef:
                   name: backend-api
           name: backend
           image: gcr.io/PROJECT_ID/IMAGE:TAG
@@ -34,7 +26,7 @@ spec:
               scheme: HTTP
               httpHeaders:
                 - name: Authorization
-                  value: $(PROBE_AUTH_HEADER)
+                  value: ${PROBE_AUTH_HEADER}
             initialDelaySeconds: 60
             timeoutSeconds: 5
             periodSeconds: 120
@@ -47,7 +39,7 @@ spec:
               scheme: HTTP
               httpHeaders:
                 - name: Authorization
-                  value: $(PROBE_AUTH_HEADER)
+                  value: ${PROBE_AUTH_HEADER}
             initialDelaySeconds: 30
             timeoutSeconds: 2
             periodSeconds: 10

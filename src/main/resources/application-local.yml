@@ -4,10 +4,12 @@ logging:
     root: DEBUG
 
 app:
+  search-repository-max-duration-in-seconds: 12
   imdb:
     url: ${IMDB_BASE_URL:http://localhost:7080/imdb}
     host: ${IMDB_HOST_HEADER:rnd}
     key: ${IMDB_KEY:rnd}
+    webClient-response-timeout-in-seconds: 5
 
 #spring settings
 spring:
