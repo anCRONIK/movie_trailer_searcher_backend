@@ -30,10 +30,7 @@ public class MovieTrailersController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<MovieTrailerSearchResponse>> searchMovieTrailersByTitle(@RequestParam("title") String title, @RequestParam(name = "limit", defaultValue = "10") int limit,
-        HttpServletRequest request) {
-        addLoggingData(request);
-
+    public ResponseEntity<List<MovieTrailerSearchResponse>> searchMovieTrailersByTitle(@RequestParam("title") String title, @RequestParam(name = "limit", defaultValue = "10") int limit) {
         log.debug("New search for movie trailer '{}' with limit {}", title, limit);
 
         return ResponseEntity.ok(movieTrailersSearchService.searchMovieTrailersForTitle(new MovieTrailerSearchRequest(title, limit)));

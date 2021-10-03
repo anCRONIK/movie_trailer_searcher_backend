@@ -35,6 +35,7 @@ public class MovieTrailerSearchServiceImpl implements MovieTrailerSearchService 
             return new ArrayList<>();
         }
 
+        //TODO we need to make calls async so if one repository is bad we still get data and it does not impact performance
         for (MovieTrailerSearchRepository repository : searchRepositories) {
             try {
                 if (responseSet.size() < request.getLimit() && request.getLimit() >= 0) {

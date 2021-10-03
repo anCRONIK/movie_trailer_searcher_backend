@@ -1,5 +1,6 @@
 package site.ancronik.movie.trailer.searcher.core.config;
 
+import org.apache.commons.validator.routines.UrlValidator;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,6 +50,11 @@ public class GeneralConfiguration {
             "https://creativecommons.org/licenses/by-sa/3.0/",
             Collections.emptyList()
         );
+    }
+
+    @Bean
+    public UrlValidator urlValidator(){
+        return new UrlValidator(new String[] { "http", "https" });
     }
 
 }

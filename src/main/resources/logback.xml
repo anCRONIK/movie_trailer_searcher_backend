@@ -6,6 +6,8 @@
         </encoder>
     </appender>
 
+    <!--TODO gcloud logger -->
+
     <logger name="site.ancronik.movie.trailer.searcher" level="${APP_LOG_LEVEL:-INFO}" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>

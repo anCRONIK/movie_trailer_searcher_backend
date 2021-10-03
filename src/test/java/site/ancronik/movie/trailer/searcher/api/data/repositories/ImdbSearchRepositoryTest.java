@@ -1,5 +1,6 @@
 package site.ancronik.movie.trailer.searcher.api.data.repositories;
 
+import org.apache.commons.validator.routines.UrlValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,6 +27,9 @@ import java.util.Random;
 public class ImdbSearchRepositoryTest {
 
     @Autowired
+    UrlValidator urlValidator;
+
+    @Autowired
     ImdbApiCaller imdbApiCaller;
 
     @Autowired
@@ -41,7 +45,7 @@ public class ImdbSearchRepositoryTest {
 
     @BeforeEach
     void initBeforeEachTest() {
-        imdbSearchRepository = new ImdbSearchRepository(imdbApiCaller, imdbMovieResponseToMovieTrailerSearchResponseMapper);
+        imdbSearchRepository = new ImdbSearchRepository(imdbApiCaller, imdbMovieResponseToMovieTrailerSearchResponseMapper, urlValidator);
     }
 
     @Test
@@ -76,6 +80,38 @@ public class ImdbSearchRepositoryTest {
         Assertions.assertNotNull(response);
         Assertions.assertFalse(response.isEmpty());
         Assertions.assertEquals(3, response.size());
+
+        Mockito.verify(imdbApiCaller).searchMoviesByTitle(Mockito.anyString());
+        Mockito.verifyNoMoreInteractions(imdbApiCaller);
+    }
+
+    @Test
+    public void searchMovieTrailersForTitle_ValidRequestGiven_SomeInvalidTrailerUrlsGiven_ReturnDataFromApiCallerWithoutInvalidData() {
+        List<ImdbMovieResponse> imdbMovieResponses = generateSearchResponses(3);
+
+        ImdbMovieResponse response = new ImdbMovieResponse();
+        ImdbMovieData movieData = new ImdbMovieData();
+        movieData.setTrailer("pero://sda.");
+        movieData.setTitle("Pero1");
+        response.setMovieData(movieData);
+
+        ImdbMovieResponse response2 = new ImdbMovieResponse();
+        ImdbMovieData movieData2 = new ImdbMovieData();
+        movieData.setTrailer("ds.ca");
+        movieData.setTitle("Alien21");
+        response2.setMovieData(movieData2);
+
+        imdbMovieResponses.add(response);
+        imdbMovieResponses.add(response2);
+
+        Mockito.when(imdbApiCaller.searchMoviesByTitle(Mockito.anyString())).thenReturn(imdbMovieResponses);
+
+        List<MovieTrailerSearchResponse> responseData = imdbSearchRepository.findAllMovieTrailersForName(defaultRequest);
+
+        Assertions.assertNotNull(response);
+        Assertions.assertFalse(responseData.isEmpty());
+        Assertions.assertEquals(3, responseData.size());
+        Assertions.assertEquals(5, imdbMovieResponses.size());
 
         Mockito.verify(imdbApiCaller).searchMoviesByTitle(Mockito.anyString());
         Mockito.verifyNoMoreInteractions(imdbApiCaller);

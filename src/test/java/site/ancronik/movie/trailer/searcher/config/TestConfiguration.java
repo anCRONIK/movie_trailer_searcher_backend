@@ -1,6 +1,7 @@
 package site.ancronik.movie.trailer.searcher.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.validator.routines.UrlValidator;
 import org.ehcache.jsr107.EhcacheCachingProvider;
 import org.ehcache.xml.XmlConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
@@ -41,4 +42,8 @@ public class TestConfiguration {
         return new JsonResourceObjectMapper(objectMapper);
     }
 
+    @Bean
+    public UrlValidator urlValidator(){
+        return new UrlValidator(new String[] { "http", "https" });
+    }
 }
