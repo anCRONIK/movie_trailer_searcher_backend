@@ -1,6 +1,7 @@
 package site.ancronik.movie.trailer.searcher.api.presentation.controllers;
 
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +13,9 @@ import site.ancronik.movie.trailer.searcher.api.domain.entities.MovieTrailerSear
 import site.ancronik.movie.trailer.searcher.api.domain.entities.MovieTrailerSearchResponse;
 import site.ancronik.movie.trailer.searcher.api.domain.services.MovieTrailerSearchService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/movie-trailers")
@@ -27,10 +30,19 @@ public class MovieTrailersController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<MovieTrailerSearchResponse>> searchMovieTrailersByName(@RequestParam("title") String title, @RequestParam(name = "limit", defaultValue = "10") int limit) {
+    public ResponseEntity<List<MovieTrailerSearchResponse>> searchMovieTrailersByTitle(@RequestParam("title") String title, @RequestParam(name = "limit", defaultValue = "10") int limit,
+        HttpServletRequest request) {
+        addLoggingData(request);
+
         log.debug("New search for movie trailer '{}' with limit {}", title, limit);
-        //TODO add user name to MDC for logging
+
         return ResponseEntity.ok(movieTrailersSearchService.searchMovieTrailersForTitle(new MovieTrailerSearchRequest(title, limit)));
+    }
+
+    private void addLoggingData(HttpServletRequest request) {
+        if (Objects.nonNull(request.getUserPrincipal())) {
+            MDC.put("user", request.getUserPrincipal().getName());
+        }
     }
 
 }
