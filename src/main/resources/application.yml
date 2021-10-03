@@ -1,9 +1,11 @@
 #application
 app:
+  search-repository-max-duration-in-seconds: 12
   imdb:
     url: ${IMDB_BASE_URL:https://data-imdb1.p.rapidapi.com}
     host: ${IMDB_HOST_HEADER:data-imdb1.p.rapidapi.com}
     key: ${IMDB_KEY:47bc2ea633msh59d456f21da4c77p1ebc98jsn807b27dcc05e}
+    webClient-response-timeout-in-seconds: 5
 
 #actuator
 info:
@@ -33,3 +35,6 @@ spring:
       config: 'classpath:ehcache.xml'
   main:
     banner-mode: off
+  mvc:
+    async:
+      request-timeout: 14000 #14s

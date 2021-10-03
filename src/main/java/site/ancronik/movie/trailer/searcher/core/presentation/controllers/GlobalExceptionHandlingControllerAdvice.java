@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.async.AsyncRequestTimeoutException;
 
 import java.sql.SQLException;
 
@@ -19,17 +20,12 @@ public class GlobalExceptionHandlingControllerAdvice {
         this.messageSource = messageSource;
     }
 
-    /**
-     * Convert a predefined exception to an HTTP Status code and specify the name of a specific view that will be used to display the error.
-     *
-     * @return Exception view.
-     */
-    @ExceptionHandler({ SQLException.class }) //FIXME
-    public String databaseError(Exception exception) {
-        // Nothing to do. Return value 'databaseError' used as logical view name
-        // of an error page, passed to view-resolver(s) in usual way.
-        log.error("Request raised " + exception.getClass().getSimpleName());
-        return "databaseError";
+
+    //TODO configure exception handlers if needed
+
+    @ExceptionHandler({ AsyncRequestTimeoutException.class })
+    public String asyncRequestTimeout(Exception exception) {
+       return "";
     }
 
 }

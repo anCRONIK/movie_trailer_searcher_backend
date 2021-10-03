@@ -19,7 +19,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-
 @ContextConfiguration(classes = { ApiServiceDefaultConfiguration.class })
 @SpringBootTest
 public class MovieTrailerSearchServiceImplTest {
@@ -39,7 +38,7 @@ public class MovieTrailerSearchServiceImplTest {
 
     @BeforeEach
     void initBeforeEachTest() {
-        movieTrailerSearchService = new MovieTrailerSearchServiceImpl(Arrays.asList(youtubeRepositoryMock, netflixRepositoryMock));
+        movieTrailerSearchService = new MovieTrailerSearchServiceImpl(Arrays.asList(youtubeRepositoryMock, netflixRepositoryMock),10);
     }
 
     MovieTrailerSearchRequest defaultRequest = new MovieTrailerSearchRequest("sparta", 10);
@@ -48,11 +47,7 @@ public class MovieTrailerSearchServiceImplTest {
     public void checkInit() {
         Assertions.assertNotNull(movieTrailerSearchService);
         Assertions.assertNotNull(autowiredService);
-        if (autowiredService instanceof Proxy) {
-            Assertions.assertTrue(((Proxy) autowiredService).toString().startsWith("site.ancronik.movie.trailer.searcher.api.domain.services.MovieTrailerSearchServiceImpl"));
-        } else {
-            Assertions.assertTrue(autowiredService instanceof MovieTrailerSearchServiceImpl);
-        }
+        Assertions.assertTrue(autowiredService.toString().startsWith("site.ancronik.movie.trailer.searcher.api.domain.services.MovieTrailerSearchServiceImpl"));
     }
 
     @Test
@@ -201,4 +196,5 @@ public class MovieTrailerSearchServiceImplTest {
 
         return list;
     }
+
 }
