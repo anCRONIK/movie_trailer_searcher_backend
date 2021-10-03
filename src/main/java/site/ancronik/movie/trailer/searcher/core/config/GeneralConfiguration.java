@@ -55,7 +55,7 @@ public class GeneralConfiguration {
     }
 
     @Bean
-    public UrlValidator urlValidator(){
+    public UrlValidator urlValidator() {
         return new UrlValidator(new String[] { "http", "https" });
     }
 

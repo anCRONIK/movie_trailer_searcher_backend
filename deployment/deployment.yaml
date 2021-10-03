@@ -32,6 +32,9 @@ spec:
               path: /actuator/health
               port: 8080
               scheme: HTTP
+              httpHeaders:
+                - name: Authorization
+                  value: Basic dXNlcjpwYXNzd29yZA== #TODO change
             initialDelaySeconds: 60
             timeoutSeconds: 5
             periodSeconds: 120
@@ -42,6 +45,9 @@ spec:
               path: /actuator/health
               port: 8080
               scheme: HTTP
+              httpHeaders:
+                - name: Authorization
+                  value: Basic dXNlcjpwYXNzd29yZA== #TODO change
             initialDelaySeconds: 30
             timeoutSeconds: 2
             periodSeconds: 10
