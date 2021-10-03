@@ -7,15 +7,20 @@ import org.ehcache.xml.XmlConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.jcache.JCacheCacheManager;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import site.ancronik.movie.trailer.searcher.util.JsonResourceObjectMapper;
 
 import javax.cache.Caching;
 import java.io.IOException;
+import java.util.List;
 
 @EnableCaching
-@Configuration
+@org.springframework.boot.test.context.TestConfiguration
 public class TestConfiguration {
 
     @Bean(destroyMethod = "close")
@@ -31,7 +36,6 @@ public class TestConfiguration {
         return new JCacheCacheManager(cacheManager);
     }
 
-
     @Bean
     ObjectMapper objectMapper() {
         return new ObjectMapper();
@@ -43,7 +47,18 @@ public class TestConfiguration {
     }
 
     @Bean
-    public UrlValidator urlValidator(){
+    public UrlValidator urlValidator() {
         return new UrlValidator(new String[] { "http", "https" });
     }
+
+    @Bean
+    @Primary
+    public UserDetailsService userDetailsService() {
+        User basicUser = new User("user", "", List.of(new SimpleGrantedAuthority("USER")));
+
+        return new InMemoryUserDetailsManager(List.of(
+            basicUser
+        ));
+    }
+
 }

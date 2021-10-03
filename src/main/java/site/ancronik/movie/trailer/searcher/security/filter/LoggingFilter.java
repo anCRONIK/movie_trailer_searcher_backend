@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.UUID;
 
-public class IdFilter implements Filter { //TODO USE ME in Sprign security
+public class LoggingFilter implements Filter {
 
     private static final String KEY_UUID = "uuid";
     private static final String KEY_USER = "user";

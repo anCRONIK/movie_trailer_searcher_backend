@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -39,6 +40,7 @@ public class MovieTrailersControllerTest {
     private MockMvc mvc;
 
     @Test
+    @WithUserDetails()
     public void searchMovieTrailersByTitle_MakeCall_StatusOk() throws Exception {
         List<MovieTrailerSearchResponse> responseData =
             (List<MovieTrailerSearchResponse>) jsonResourceObjectMapper.loadTestJson("api_responses/search-movie-trailers-response.json", List.class);
@@ -54,6 +56,7 @@ public class MovieTrailersControllerTest {
     }
 
     @Test
+    @WithUserDetails()
     public void searchMovieTrailersByTitle_MakeCall_ServiceThrowsError() throws Exception {
         Mockito.when(movieTrailerSearchServiceMock.searchMovieTrailersForTitle(Mockito.any())).thenThrow(DataServiceException.class);
 
