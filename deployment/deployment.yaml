@@ -34,7 +34,7 @@ spec:
               scheme: HTTP
               httpHeaders:
                 - name: Authorization
-                  value: Basic dXNlcjpwYXNzd29yZA== #TODO change
+                  value: $(PROBE_AUTH_HEADER)
             initialDelaySeconds: 60
             timeoutSeconds: 5
             periodSeconds: 120
@@ -47,7 +47,7 @@ spec:
               scheme: HTTP
               httpHeaders:
                 - name: Authorization
-                  value: Basic dXNlcjpwYXNzd29yZA== #TODO change
+                  value: $(PROBE_AUTH_HEADER)
             initialDelaySeconds: 30
             timeoutSeconds: 2
             periodSeconds: 10
